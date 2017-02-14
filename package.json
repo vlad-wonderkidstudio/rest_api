@@ -1,0 +1,21 @@
+{
+  "name": "inventoryoptix_grunt",
+  "description": " Dependencies for Grunt ",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
+  "scripts": {},
+  "author": "wks",
+  "license": "ISC",
+  
+  "devDependencies": {},
+  "scripts": {
+    "preinstall": "sudo npm i -g grunt-cli"
+  },
+
+  "dependencies": {
+    "grunt": "",
+    "grunt-preprocess": ""
+  },
+
+  "engine": "node >= 0.10.12"
+}

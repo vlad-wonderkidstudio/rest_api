@@ -1,0 +1,689 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# InventoryOptix
+InventoryOptix is an inventory system for businesses to count and order items.  It is designed to run both standalone and integrated into other systems.
+
+# Group Login
+## Login call [/login]
+Login related resources of the **InventoryOptix API**
+
+### Submit a Login [POST]
++ Request (application/json)
+
+        {"username":"system@inventoryoptix.com","password" : "system"}
+
++ Response 201 (application/json)
+
+        {
+          "AuthToken": "c3lzdGVtQGNvbm5lY3Rpb25wbGFubmVyLmNvbTozMTdGMUU3NjFGMkZBQThEQTc4MUE0NzYyQjlEQ0MyQzVDQUQyMDlB",
+          "EntityID": "00000000-0000-0000-0000-000000000000",
+          "FirstName": "System",
+          "LastName": "Account",
+          "Email": "system@inventoryoptix.com",
+          "DisplayName": "System Account"
+        }
+
+# Group LoginFail
+## LoginFail call [/loginfail]
+**This is not part of the API, it is only here for front-end testing of login failures**
+
+### Submit a LoginFail [POST]
++ Request (application/json)
+
+        {"username":"test","password" : "test"}
+
++ Response 200 (application/json)
+
+        null
+
+# Group Category
+Category related resources of the **InventoryOptix API**
+
+## Category Collection [/category]
+### List all Categories [GET]
++ Response 200 (application/json)
+
+        [{
+          "Name": "Dairy",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        },
+        {
+          "Name": "Meat",
+          "EntityID": "CD4B2A61-3992-4F26-B30B-354D754C237D",
+          "Version": "98552788-7A19-4E1C-A522-783A4BCA79F6",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }]
+
+### Create a Category [POST]
++ Request (application/json)
+
+        {
+          "Name": "Dairy"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "Dairy"
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+### Update a Category [PUT]
++ Request (application/json)
+
+        {
+          "Name": "Dairy - NonFrozen",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "Dairy - NonFrozen",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+          "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-05-22T10:24:52.803Z"
+        }
+        
+## Category [/category/{id}]
+A single Category object with its details
+
++ Parameters
+    + id (required, string, `00000000-0000-0000-0000-000000000000`) ... String `EntityID`(UUID) of the Category to perform action with. Has example value.
+
+### Retrieve a Category [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+              "Name": "Dairy - NonFrozen",
+              "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+              "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+              "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+              "Active": true,
+              "ChangedBy": "System Account",
+              "ChangedByID": "00000000-0000-0000-0000-000000000000",
+              "ChangedOn": "2014-05-22T10:24:52.803Z"
+            }
+
+### Remove a Category [DELETE]
++ Response 204
+       
+# Group UnitOfMeasure
+UnitOfMeasure related resources of the **InventoryOptix API**
+
+## UnitOfMeasure Collection [/uom]
+### List all UnitsOfMeasure [GET]
++ Response 200 (application/json)
+
+        [{
+          "Name": "Gallon",
+          "Abbreviation": "GL",
+          "TypeID": 1,
+          "BaseConversionFactor": 3.78541,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true,
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        },
+        {
+          "Name": "Liter",
+          "Abbreviation": "L",
+          "TypeID": 1,
+          "BaseConversionFactor": 1,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true,
+          "EntityID": "CD4B2A61-3992-4F26-B30B-354D754C237D",
+          "Version": "98552788-7A19-4E1C-A522-783A4BCA79F6",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }]
+
+### Create a UnitOfMeasure [POST]
++ Request (application/json)
+
+        {
+          "Name": "Gallon",
+          "Abbreviation": "GL",
+          "TypeID": 1,
+          "BaseConversionFactor": 3.78541,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "Gallon",
+          "Abbreviation": "GL",
+          "TypeID": 1,
+          "BaseConversionFactor": 3.78541,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true,
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+### Update a UnitOfMeasure [PUT]
++ Request (application/json)
+
+        {
+          "Name": "Gallon",
+          "Abbreviation": "GL",
+          "TypeID": 1,
+          "BaseConversionFactor": 3.78541,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true,
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "Gallon",
+          "Abbreviation": "GL",
+          "TypeID": 1,
+          "BaseConversionFactor": 3.78541,
+          "CanBeUsedForInventory": true,
+          "CanBeUsedForOrdering":true,
+          "IsNatural":true,
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "CB2CFDB8-0B50-4B2B-BE46-671BE6614362",
+          "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+        
+## UnitOfMeasure [/uom/{id}]
+A single UnitOfMeasure object with its details
+
++ Parameters
+    + id (required, string, `00000000-0000-0000-0000-000000000000`) ... String `EntityID`(UUID) of the UnitOfMeasure to perform action with. Has example value.
+
+### Retrieve a UnitOfMeasure [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+              "Name": "Gallon",
+              "Abbreviation": "GL",
+              "TypeID": 1,
+              "BaseConversionFactor": 3.78541,
+              "CanBeUsedForInventory": true,
+              "CanBeUsedForOrdering":true,
+              "IsNatural":true,
+              "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+              "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+              "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+              "Active": true,
+              "ChangedBy": "System Account",
+              "ChangedByID": "00000000-0000-0000-0000-000000000000",
+              "ChangedOn": "2014-05-22T10:24:52.803Z"
+            }
+
+### Remove a UnitOfMeasure [DELETE]
++ Response 204
+
+# Group UserAccount
+UserAccount related resources of the **InventoryOptix API**
+
+## UserAccount Collection [/useraccount]
+### List all UserAccounts [GET]
++ Response 200 (application/json)
+
+        [{
+          "EmailHash": "5a5ad8f5e5fc1dea456e179a607f6521",
+          "Email": "system@inventoryoptix.com",
+          "Phone": null,
+          "FirstName": "System",
+          "LastName": "Account",
+          "Password": null,
+          "HashedPassword": "317F1E761F2FAA8DA781A4762B9DCC2C5CAD209A",
+          "IsAdministrator": false,
+          "LinkedIn": null,
+          "FullName": "System Account",
+          "DisplayName": "System Account",
+          "EntityID": "00000000-0000-0000-0000-000000000000",
+          "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }]
+
+### Create a UserAccount [POST]
++ Request (application/json)
+
+        {
+          "Email": "system@inventoryoptix.com",
+          "FirstName": "System",
+          "LastName": "Account",
+          "Password": "system",
+          "IsAdministrator": true,
+          "EntityID": "00000000-0000-0000-0000-000000000000"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "EmailHash": "5a5ad8f5e5fc1dea456e179a607f6521",
+          "Email": "system@inventoryoptix.com",
+          "Phone": null,
+          "FirstName": "System",
+          "LastName": "Account",
+          "Password": null,
+          "HashedPassword": "317F1E761F2FAA8DA781A4762B9DCC2C5CAD209A",
+          "IsAdministrator": true,
+          "LinkedIn": null,
+          "FullName": "System Account",
+          "DisplayName": "System Account",
+          "EntityID": "00000000-0000-0000-0000-000000000000",
+          "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+### Update a UserAccount [PUT]
++ Request (application/json)
+
+        {
+          "Email": "system@inventoryoptix.com",
+          "FirstName": "System",
+          "LastName": "Account",
+          "Password": "system",
+          "IsAdministrator": true,
+          "EntityID": "00000000-0000-0000-0000-000000000000",
+          "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "Phone": "800-555-1212"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "EmailHash": "5a5ad8f5e5fc1dea456e179a607f6521",
+          "Email": "system@inventoryoptix.com",
+          "Phone": "800-555-1212",
+          "FirstName": "System",
+          "LastName": "Account",
+          "Password": null,
+          "HashedPassword": "317F1E761F2FAA8DA781A4762B9DCC2C5CAD209A",
+          "IsAdministrator": true,
+          "LinkedIn": null,
+          "FullName": "System Account",
+          "DisplayName": "System Account",
+          "EntityID": "00000000-0000-0000-0000-000000000000",
+          "Version": "DFDD9FC8-59EC-4173-9CEF-C57778CE5E32",
+          "PreviousVersion": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-05-22T10:24:52.803Z"
+        }
+        
+## UserAccount [/useraccount/{id}]
+A single UserAccount object with all its details
+
++ Parameters
+    + id (required, string, `00000000-0000-0000-0000-000000000000`) ... String `EntityID`(UUID) of the UserAccount to perform action with. Has example value.
+
+### Retrieve a UserAccount [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+              "EmailHash": "5a5ad8f5e5fc1dea456e179a607f6521",
+              "Email": "system@inventoryoptix.com",
+              "Phone": null,
+              "FirstName": "System",
+              "LastName": "Account",
+              "Password": null,
+              "HashedPassword": "317F1E761F2FAA8DA781A4762B9DCC2C5CAD209A",
+              "IsAdministrator": true,
+              "LinkedIn": null,
+              "FullName": "System Account",
+              "DisplayName": "System Account",
+              "EntityID": "00000000-0000-0000-0000-000000000000",
+              "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+              "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+              "Active": true,
+              "ChangedBy": "System Account",
+              "ChangedByID": "00000000-0000-0000-0000-000000000000",
+              "ChangedOn": "2014-04-22T10:24:52.803Z"
+            }
+
+### Remove a UserAccount [DELETE]
++ Response 204
+
+# Group Vendor
+Vendor related resources of the **InventoryOptix API**
+
+## Vendor Collection [/vendor]
+### List all Vendors [GET]
++ Response 200 (application/json)
+
+        [{
+          "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+          "Name" : "Sysco",
+          "NameAdditional" : "",
+          "ContactName" : "Bob Jones",
+          "Address1" : "10700 Bel Air Blvd",
+          "Address2" : "Suite 8000",
+          "City" : "Bel Air",
+          "State" : "MD",
+          "PostalCode" : "10023",
+          "Phone" : "800-515-2222",
+          "Fax" : "800-515-2333",
+          "Email" : "bob.jones@sysco.com",
+          "PreferredContactMethod": "email",
+          "MinimumOrder" : 100,
+          "Notes": "Double-check all quantities and weigh all cheeses",
+          "EntityID": "3C02B7FB-9356-4F49-BDFA-87775B7F60E9",
+          "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }]
+
+### Create a Vendor [POST]
++ Request (application/json)
+
+        {
+          "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+          "Name" : "Sysco",
+          "NameAdditional" : "",
+          "ContactName" : "Bob Jones",
+          "Address1" : "10700 Bel Air Blvd",
+          "Address2" : "Suite 8000",
+          "City" : "Bel Air",
+          "State" : "MD",
+          "PostalCode" : "10023",
+          "Phone" : "800-515-2222",
+          "Fax" : "800-515-2333",
+          "Email" : "bob.jones@sysco.com",
+          "PreferredContactMethod": "email",
+          "MinimumOrder" : 100,
+          "Notes": "Double-check all quantities and weigh all cheeses"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+          "Name" : "Sysco",
+          "NameAdditional" : "",
+          "ContactName" : "Bob Jones",
+          "Address1" : "10700 Bel Air Blvd",
+          "Address2" : "Suite 8000",
+          "City" : "Bel Air",
+          "State" : "MD",
+          "PostalCode" : "10023",
+          "Phone" : "800-515-2222",
+          "Fax" : "800-515-2333",
+          "Email" : "bob.jones@sysco.com",
+          "PreferredContactMethod": "email",
+          "MinimumOrder" : 100,
+          "Notes": "Double-check all quantities and weigh all cheeses",
+          "EntityID": "3C02B7FB-9356-4F49-BDFA-87775B7F60E9",
+          "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+### Update a Vendor [PUT]
++ Request (application/json)
+
+        {
+          "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+          "Name" : "Sysco",
+          "NameAdditional" : "",
+          "ContactName" : "Bob Jones",
+          "Address1" : "10700 Bel Air Blvd",
+          "Address2" : "Suite 8000",
+          "City" : "Bel Air",
+          "State" : "MD",
+          "PostalCode" : "10023",
+          "Phone" : "800-515-2222",
+          "Fax" : "800-515-2333",
+          "Email" : "bob.jones@sysco.com",
+          "PreferredContactMethod": "phone",
+          "MinimumOrder" : 100,
+          "Notes": "Double-check all quantities and weigh all cheeses",
+          "EntityID": "3C02B7FB-9356-4F49-BDFA-87775B7F60E9",
+        }
+
++ Response 201 (application/json)
+
+        {
+          "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+          "Name" : "Sysco",
+          "NameAdditional" : "",
+          "ContactName" : "Bob Jones",
+          "Address1" : "10700 Bel Air Blvd",
+          "Address2" : "Suite 8000",
+          "City" : "Bel Air",
+          "State" : "MD",
+          "PostalCode" : "10023",
+          "Phone" : "800-515-2222",
+          "Fax" : "800-515-2333",
+          "Email" : "bob.jones@sysco.com",
+          "PreferredContactMethod": "phone",
+          "MinimumOrder" : 100,
+          "Notes": "Double-check all quantities and weigh all cheeses",
+          "EntityID": "3C02B7FB-9356-4F49-BDFA-87775B7F60E9",
+          "Version": "B81E0042-C015-4F6C-AF3E-FB74CBBC8476",
+          "PreviousVersion": "b1df0326-048f-46cf-8382-4025efa5be04",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+        
+## Vendor [/vendor/{id}]
+A single Vendor object with all its details
+
++ Parameters
+    + id (required, string, `3C02B7FB-9356-4F49-BDFA-87775B7F60E9`) ... String `EntityID`(UUID) of the Vendor to perform action with. Has example value.
+
+### Retrieve a Vendor [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+              "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+              "Name" : "Sysco",
+              "NameAdditional" : "",
+              "ContactName" : "Bob Jones",
+              "Address1" : "10700 Bel Air Blvd",
+              "Address2" : "Suite 8000",
+              "City" : "Bel Air",
+              "State" : "MD",
+              "PostalCode" : "10023",
+              "Phone" : "800-515-2222",
+              "Fax" : "800-515-2333",
+              "Email" : "bob.jones@sysco.com",
+              "PreferredContactMethod": "email",
+              "MinimumOrder" : 100,
+              "Notes": "Double-check all quantities and weigh all cheeses",
+              "EntityID": "3C02B7FB-9356-4F49-BDFA-87775B7F60E9",
+              "Version": "B81E0042-C015-4F6C-AF3E-FB74CBBC8476",
+              "PreviousVersion": "b1df0326-048f-46cf-8382-4025efa5be04",
+              "Active": true,
+              "ChangedBy": "System Account",
+              "ChangedByID": "00000000-0000-0000-0000-000000000000",
+              "ChangedOn": "2014-04-22T10:24:52.803Z"
+            }
+
+### Remove a Vendor [DELETE]
++ Response 204
+
+# Group StorageContainer
+StorageContainer related resources of the **InventoryOptix API**
+
+## StorageContainer Collection [/storagecontainer]
+### List all StorageContainers [GET]
++ Response 200 (application/json)
+
+        [{
+          "Name": "MyString-1",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        },
+        {
+          "Name": "MyString-101",
+          "EntityID": "CD4B2A61-3992-4F26-B30B-354D754C237D",
+          "Version": "98552788-7A19-4E1C-A522-783A4BCA79F6",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }]
+
+### Create a StorageContainer [POST]
++ Request (application/json)
+
+        {
+          "Name": "MyString-1"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "MyString-1",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+### Update a StorageContainer [PUT]
++ Request (application/json)
+
+        {
+          "Name": "MyString-1001",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "Name": "MyString-1001",
+          "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+          "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+          "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+          "Active": true,
+          "ChangedBy": "System Account",
+          "ChangedByID": "00000000-0000-0000-0000-000000000000",
+          "ChangedOn": "2014-04-22T10:24:52.803Z"
+        }
+
+## StorageContainer [/storagecontainer/{id}]
+A single StorageContainer object with its details
+
++ Parameters
+    + id (required, string, `D2FE7E56-478B-40CB-B59B-34A559343481`) ... String `EntityID`(UUID) of the StorageContainer to perform action with. Has example value.
+
+### Retrieve a StorageContainer [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+              "Name": "MyString-1001",
+              "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+              "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+              "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+              "Active": true,
+              "ChangedBy": "System Account",
+              "ChangedByID": "00000000-0000-0000-0000-000000000000",
+              "ChangedOn": "2014-04-22T10:24:52.803Z"
+            }
+
+### Remove a StorageContainer [DELETE]
++ Response 204
+
