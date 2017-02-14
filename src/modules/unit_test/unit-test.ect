@@ -1,0 +1,16 @@
+<% extend 'ect_templates/layout' %>
+
+<% block 'title-text' : %>QUNit test<% end %>
+<% block 'head-data' : %>
+	<link rel="stylesheet" href="/unittest/css/qunit.css">
+	<script src="/unittest/js/utils.js"></script>
+<% end %>
+<div>
+	<input type="button" value="Clear DB" onclick="clearDB();">
+	<input type="button" value="Clear Redis" onclick="clearRedis();">
+	<input type="button" value="Clear DB&Redis" onclick="clearDBandRedis();">
+</div>
+<div id="qunit"></div>
+<script src="/unittest/js/jquery.js"></script>
+<script src="/unittest/js/qunit.js"></script>
+<script src="/unittest/js/tests.js"></script>

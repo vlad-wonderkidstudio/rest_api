@@ -1,0 +1,235 @@
+
+--------------------------------------
+
+1) GET /useraccount
+
+curl -u system@inventoryoptix.com:27bc2b305a5dae25d413cfb5dff52f75 --include  http://127.0.0.1:3000/useraccount
+
+2) POST /useraccount (Create a UserAccount)
+
+curl -u system@inventoryoptix.com:systemddd --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "Email": "system@inventoryoptix.com",
+  "FirstName": "System",
+  "LastName": "Account",
+  "Password": "system",
+  "IsAdministrator": true,
+  "EntityID": "00000000-0000-0000-0000-000000000000"
+  }' \
+  http://127.0.0.1:3000/useraccount
+
+3) PUT /useraccount (Update a UserAccount)
+
+curl -u system@inventoryoptix.com:27bc2b305a5dae25d413cfb5dff52f75 --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "Email": "system@inventoryoptix.com",
+  "FirstName": "System2",
+  "LastName": "Account",
+  "Password": "system2",
+  "IsAdministrator": true,
+  "EntityID": "b0f7cb60-e83f-11e3-95e9-f5f5aa802a98",
+  "Version": "b1df0326-048f-46cf-8382-4025efa5be04",
+  "Phone": "800-555-1212"
+}' \
+    http://127.0.0.1:3000/useraccount
+
+4) GET  /useraccount/{id}  (Retrieve a UserAccount)
+
+curl  -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/useraccount/51721880-e826-11e3-ad8f-fd368f9a95aa
+
+5) DELETE /useraccount/{id}  (Remove a UserAccount)
+
+curl  -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request DELETE \
+ http://127.0.0.1:3000/useraccount/51721880-e826-11e3-ad8f-fd368f9a95aa
+
+ ----------------------------------VENDOR
+
+1)  GET  /vendor
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/vendor
+
+2) POST /vendor (Create a Vendor)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+  "Name" : "Sysco",
+  "NameAdditional" : "",
+  "ContactName" : "Bob Jones",
+  "Address1" : "10700 Bel Air Blvd",
+  "Address2" : "Suite 8000",
+  "City" : "Bel Air",
+  "State" : "MD",
+  "PostalCode" : "10023",
+  "Phone" : "800-515-2222",
+  "Fax" : "800-515-2333",
+  "Email" : "bob.jones@sysco.com",
+  "PreferredContactMethod": "email",
+  "MinimumOrder" : 100,
+  "Notes": "Double-check all quantities and weigh all cheeses"
+}' \
+     http://127.0.0.1:3000/vendor
+
+3) PUT /vendor (Update a Vendor)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "ClientID" :  "BDAE3059-E2CB-4E37-A537-FDA15BC67B78",
+  "Name" : "Sysco",
+  "NameAdditional" : "",
+  "ContactName" : "Bob Jones",
+  "Address1" : "10700 Bel Air Blvd",
+  "Address2" : "Suite 8000",
+  "City" : "Bel Air",
+  "State" : "MD",
+  "PostalCode" : "10023",
+  "Phone" : "800-515-2222",
+  "Fax" : "800-515-2333",
+  "Email" : "bob2.jones@sysco.com",
+  "PreferredContactMethod": "phone",
+  "MinimumOrder" : 100,
+  "Notes": "Double-check all quantities and weigh all cheeses",
+  "EntityID": "61d472d0-e908-11e3-8a47-4b628913d975"
+}' \
+     http://127.0.0.1:3000/vendor
+
+4) GET /vendor/{id}  (Retrieve a Vendor)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/vendor/6ca18d20-e902-11e3-9c4e-079a4741ab38
+
+5) DELETE /vendor/{id}  (Remove a Vendor)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request DELETE \
+ http://127.0.0.1:3000/vendor/6ca18d20-e902-11e3-9c4e-079a4741ab38
+
+
+ --------------------------------LOGIN
+
+ 1) Login
+
+curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary '{ "username" : "system@inventoryoptix.com", "password": "system" }'  http://127.0.0.1:3000/login
+
+
+
+ ----------------------------------CATEGORY
+
+1)  GET  /category
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/category
+
+2) POST /category (Create a Category)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "Name": "Dairy",
+  "EntityID": "D2FE7E56-478B-40CB-B59B-34A559343481",
+  "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+  "PreviousVersion": "00000000-0000-0000-0000-000000000000",
+  "Active": true,
+  "ChangedBy": "System Account",
+  "ChangedByID": "00000000-0000-0000-0000-000000000000",
+  "ChangedOn": "2014-04-22T10:24:52.803Z"
+}' \
+     http://127.0.0.1:3000/category
+
+3) PUT /category (Update a Category)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+ "Name": "Dairy - NonFrozen",
+  "EntityID": "8b47d290-ea9a-11e3-b775-33a782cd3505",
+  "Version": "FB1A6F97-62FE-4837-8A21-7CDF8DDF0AA3",
+  "PreviousVersion": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE",
+  "Active": true,
+  "ChangedBy": "System Account",
+  "ChangedByID": "00000000-0000-0000-0000-000000000000",
+  "ChangedOn": "2014-05-22T10:24:52.803Z"
+}' \
+     http://127.0.0.1:3000/category
+
+4) GET /category/{id}  (Retrieve a Category)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/category/8b47d290-ea9a-11e3-b775-33a782cd3505
+
+5) DELETE /category/{id}  (Remove a Category)
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request DELETE \
+ http://127.0.0.1:3000/category/f1fe4450-ea9b-11e3-8082-7beaf5649677
+
+
+---------------------------Unit Of Manager
+
+1)  GET /uom
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/uom
+
+
+ 2) POST /uom
+
+ curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "Name": "Gallon",
+  "Abbreviation": "GL",
+  "TypeID": 1,
+  "BaseConversionFactor": 3.78541,
+  "CanBeUsedForInventory": true,
+  "CanBeUsedForOrdering":true,
+  "IsNatural":true
+}' \
+     http://127.0.0.1:3000/uom
+
+3) PUT /uom
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary '{
+  "Name": "Gallon2",
+  "Abbreviation": "GL",
+  "TypeID": 1,
+  "BaseConversionFactor": 3.78541,
+  "CanBeUsedForInventory": true,
+  "CanBeUsedForOrdering":true,
+  "IsNatural":true,
+  "EntityID": "a923c200-eb54-11e3-b34e-2560a2f11162",
+  "Version": "ABAC8C3C-E6FB-42DC-88B5-7FBD59EB93FE"
+}' \
+     http://127.0.0.1:3000/uom
+
+
+4) GET /uom/{id}
+
+curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+ http://127.0.0.1:3000/uom/a923c200-eb54-11e3-b34e-2560a2f11162
+
+ 5) DELETE /uom/{id}
+
+ curl -u system@inventoryoptix.com:a55e49d643155ae8433c408692605129 --include \
+     --request DELETE \
+ http://127.0.0.1:3000/uom/a923c200-eb54-11e3-b34e-2560a2f11162

@@ -1,0 +1,30 @@
+{
+  "name": "InventoryOptix",
+  "description": "InventoryOptix is an inventory system for businesses to count and order items. ",
+  "version": "1.0.0",
+  "main": "run.js",
+  "scripts": {},
+  "author": "wks",
+   "license": "ISC",
+
+
+  "devDependencies": {},
+  "dependencies": {
+    "redis": "",
+    "express": "",
+    "connect": "",
+    "body-parser": "",
+    "util": "",
+    "node-uuid": "",
+
+    "crypto": "",
+    "passport": "",
+    "passport-http": "",
+    "logule": "",
+    "ect": ""
+
+
+  },	
+ 
+  "engine": "node >= 0.10.12"
+}
